@@ -1,78 +1,62 @@
-"""
-server.py
-Servidor TCP para calculadora remota.
-Escucha conexiones continuamente y atiende cada cliente en un hilo.
-Protocolo simple (texto UTF-8): "operando1|operador|operando2"
-Ejemplo de mensaje: "12.5|+|3.4"
-Respuesta: resultado como string o mensaje de error.
-"""
 import socket
 import threading
-import argparse
 
-def calcular(a: float, op: str, b: float):
+# Función para calcular IMC
+def calcular_imc(peso, altura):
     try:
-        if op == '+':
-            return a + b
-        elif op == '-':
-            return a - b
-        elif op == '*':
-            return a * b
-        elif op == '/':
-            if b == 0:
-                return "ERROR: Division por cero"
-            return a / b
+        imc = peso / (altura ** 2)
+        if imc < 18.5:
+            estado = "Bajo peso"
+        elif 18.5 <= imc < 25:
+            estado = "Normal"
+        elif 25 <= imc < 30:
+            estado = "Sobrepeso"
         else:
-            return "ERROR: Operador no soportado"
+            estado = "Obesidad"
+        return f"Tu IMC es {imc:.2f} ({estado})"
     except Exception as e:
-        return f"ERROR: {e}"
+        return f"Error en el cálculo: {e}"
 
-def manejar_cliente(conn: socket.socket, addr):
-    with conn:
-        try:
-            data = conn.recv(1024)  
-            if not data:
-                return
-            mensaje = data.decode('utf-8').strip()
-            # formato: "operand1|operator|operand2"
-            parts = mensaje.split('|')
-            if len(parts) != 3:
-                respuesta = "ERROR: Formato invalido. Uso: num1|op|num2"
-            else:
-                try:
-                    a = float(parts[0])
-                    op = parts[1]
-                    b = float(parts[2])
-                    resultado = calcular(a, op, b)
-                    respuesta = str(resultado)
-                except ValueError:
-                    respuesta = "ERROR: Operandos no numericos"
-            conn.sendall(respuesta.encode('utf-8'))
-        except Exception as e:
-            try:
-                conn.sendall(f"ERROR: {e}".encode('utf-8'))
-            except:
-                pass
-
-def main(host: str, port: int):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind((host, port))
-    sock.listen(5)
-    print(f"[+] Servidor escuchando en {host}:{port}. Ctrl+C para salir.")
+# Manejo de cada cliente
+def manejar_cliente(conn, addr):
+    print(f"[+] Conexión entrante desde {addr}")
     try:
-        while True:
-            conn, addr = sock.accept()
-            print(f"[+] Conexión entrante desde {addr}")
-            hilo = threading.Thread(target=manejar_cliente, args=(conn, addr), daemon=True)
-            hilo.start()
-    except KeyboardInterrupt:
-        print("\n[!] Servidor detenido por usuario.")
+        data = conn.recv(1024).decode('utf-8')
+        if not data:
+            return
+        print(f"[>] Datos recibidos: {data}")
+
+        # Esperamos recibir "peso|altura"
+        try:
+            peso_str, altura_str = data.split('|')
+            peso = float(peso_str)
+            altura = float(altura_str)
+        except ValueError:
+            conn.sendall("Error: formato incorrecto. Usa peso|altura".encode('utf-8'))
+            return
+
+        resultado = calcular_imc(peso, altura)
+        conn.sendall(resultado.encode('utf-8'))
+
+    except Exception as e:
+        print(f"[!] Error con cliente {addr}: {e}")
     finally:
-        sock.close()
+        conn.close()
+        print(f"[-] Conexión cerrada con {addr}")
+
+# Servidor principal
+def iniciar_servidor(host='0.0.0.0', port=9999):
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind((host, port))
+    server.listen(5)
+    print(f"[+] Servidor escuchando en {host}:{port}")
+
+    while True:
+        conn, addr = server.accept()
+        hilo = threading.Thread(target=manejar_cliente, args=(conn, addr))
+        hilo.start()
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Servidor TCP calculadora remota")
-    parser.add_argument("--host", default="0.0.0.0", help="IP a enlazar (default: 0.0.0.0)")
-    parser.add_argument("--port", type=int, default=9999, help="Puerto a usar (default: 9999)")
-    args = parser.parse_args()
-    main(args.host, args.port)
+    iniciar_servidor()
+
+
