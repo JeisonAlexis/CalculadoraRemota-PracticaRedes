@@ -1,35 +1,41 @@
-"""
-client.py
-Cliente TCP para la calculadora remota.
-Solicita dos operandos y el operador al usuario, envía al servidor y muestra resultado.
-Protocolo: "operand1|operator|operand2"
-"""
 import socket
 import argparse
 
-def solicitar_datos():
-    a = input("Ingrese el primer número: ").strip()
-    op = input("Ingrese la operación (+, -, *, /): ").strip()
-    b = input("Ingrese el segundo número: ").strip()
-    return a, op, b
-
-def main(server_ip: str, port: int):
-    a, op, b = solicitar_datos()
-    mensaje = f"{a}|{op}|{b}"
+def main(server_ip, server_port):
+    print("=== Calculadora Remota de IMC ===")
     try:
-        with socket.create_connection((server_ip, port), timeout=10) as sock:
-            sock.sendall(mensaje.encode('utf-8'))
-            respuesta = sock.recv(1024)
-            if not respuesta:
-                print("No se recibió respuesta del servidor.")
-            else:
-                print("Resultado del servidor:", respuesta.decode('utf-8'))
+        peso = float(input("Ingresa tu peso en kg: "))
+        altura = float(input("Ingresa tu altura en metros (ej: 1.75): "))
+    except ValueError:
+        print("Error: ingresa valores numéricos válidos.")
+        return
+
+    # Crear socket
+    cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    try:
+        cliente.connect((server_ip, server_port))
+        print(f"[+] Conectado al servidor {server_ip}:{server_port}")
+
+        # Enviar datos
+        mensaje = f"{peso}|{altura}"
+        cliente.sendall(mensaje.encode('utf-8'))
+
+        # Recibir resultado
+        resultado = cliente.recv(1024).decode('utf-8')
+        print(f"[Servidor]: {resultado}")
+
     except Exception as e:
-        print("Error de conexión/operación:", e)
+        print(f"[!] Error de conexión: {e}")
+    finally:
+        cliente.close()
+        print("[*] Conexión cerrada.")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Cliente TCP calculadora remota")
-    parser.add_argument("--server", required=True, help="IP del servidor")
-    parser.add_argument("--port", type=int, default=9999, help="Puerto del servidor (default: 9999)")
+    parser = argparse.ArgumentParser(description="Cliente TCP para calcular IMC remotamente.")
+    parser.add_argument("--server", required=True, help="Dirección IP del servidor")
+    parser.add_argument("--port", type=int, default=9999, help="Puerto TCP del servidor")
     args = parser.parse_args()
+
     main(args.server, args.port)
+
