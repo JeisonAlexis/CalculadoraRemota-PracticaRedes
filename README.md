@@ -97,7 +97,7 @@ python3 server.py --host 0.0.0.0 --port 9999
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>🔟 Paso 10:</strong>
-      <p style="margin:.25rem 0 0 0;">Ahora debemos configurar los clientes, para esta practica los clientes van a ser Ubunto en VM y Windows como sistema operativo nativo. Clona de nuevo el Repositorio</p>
+      <p style="margin:.25rem 0 0 0;">Ahora debemos configurar los clientes (estos clientes deben tener instalado Python3), para esta practica los clientes van a ser Ubunto en VM y Windows como sistema operativo nativo. Clona de nuevo el Repositorio</p>
 </div>
 
 ```bash
@@ -106,7 +106,7 @@ git clone https://github.com/JeisonAlexis/CalculadoraRemota-PracticaRedes.git
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>1️⃣1️⃣ Paso 11:</strong>
-      <p style="margin:.25rem 0 0 0;">Mandar datos al servidor desde el Cliente Ubuntu (para ejecutar este comando ten en cuenta que la ruta debe ser dentro de la carpeta del repo)</p>
+      <p style="margin:.25rem 0 0 0;">Mandar datos al servidor (por consola) desde el Cliente Ubuntu (para ejecutar este comando ten en cuenta que la ruta debe ser dentro de la carpeta del repo)</p>
 </div>
 
 
@@ -117,14 +117,33 @@ python3 client.py --server <ip-del-servidor> --port 9999
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>1️⃣2️⃣ Paso 12:</strong>
-      <p style="margin:.25rem 0 0 0;">Abrir el archivo en VisualStudio y ejecutar los siguientes comandos para la compilacion y ejecucion: <strong>practica</strong>.</p>
+      <p style="margin:.25rem 0 0 0;">Ahora, si deseas algo un poco mas visual simplemente entra con tu editor de texto preferido al archivo "cliente_gui.py" del repo y cambia la variable "SERVER_HOST" por la ip de tu servidor.</p>
 </div>
 
 
 ```bash
--- Recuerda ejecutar estos comandos en la ruta .\codigos\
-gcc filtros.c pgm_utils.c -o filtros -fopenmp
-.\filtros.exe
+SERVER_HOST = "192.168.101.73"  # Cambia por la IP de tu servidor
+```
+
+<div style="padding:10px;border-radius:8px;background:#f7f7f7;">
+      <strong>1️⃣3️⃣ Paso 13:</strong>
+      <p style="margin:.25rem 0 0 0;">Finalmente si guardas los cambios del paso anterior y ejecutas el siguiente comando, podras enviar y recibir los datos del servidor de forma visual (no por la terminal).</p>
+</div>
+
+
+```bash
+# Esta interfaz usa Tkinter por lo que si no lo tienes instalado antes debes ejecutar este comando: sudo apt install python3-tk -y
+python3 client_gui.py
+```
+
+<div style="padding:10px;border-radius:8px;background:#f7f7f7;">
+      <strong>1️⃣4️⃣ Paso 14:</strong>
+      <p style="margin:.25rem 0 0 0;">Para hacer esto mismo pero en Windows el proceso es muy similar, clona el repo, cambia la ip a la del servidor y desde cmd entra a la ruta del repo, para finalmente ejecutar el comando.</p>
+</div>
+
+```bash
+python client.py --server <ip-del-servidor> --port 9999       #Ingresar datos por Consola
+python client_gui.py                                          #Ingresar datos por Interfaz grafica
 ```
 
 <p align="center">
