@@ -158,7 +158,8 @@ python client_gui.py                                          #Ingresar datos po
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>Para finalizar</strong>
-      <p style="margin:.25rem 0 0 0;">👇👇 Se subio a este repositorio la guia paso a paso con capturas "TrabajoTCP_Practico.pdf" y tambien lo tiene en formato web aca abajo.</p>
+      <p style="margin:.25rem 0 0 0;">Se subio el archivo de captura de red de Wireshark en este repo "practicaIMC.pcapng"</p>
+      <p style="margin:.25rem 0 0 0;">👇👇 Tambien se subio a este repositorio la guia paso a paso con capturas "TrabajoTCP_Practico.pdf" y tambien lo tiene en formato web aca abajo.</p>
 </div>
 
 <div style="text-align:center; margin-bottom:15px;">
