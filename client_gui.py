@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 # --- Configuración del servidor ---
-SERVER_HOST = "192.168.101.73"  # Cambia por la IP de tu servidor
+SERVER_HOST = "192.168.101.72"  # Cambia por la IP de tu servidor
 SERVER_PORT = 9999
 
 # --- Función para enviar datos al servidor ---
