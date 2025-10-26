@@ -146,6 +146,16 @@ python client.py --server <ip-del-servidor> --port 9999       #Ingresar datos po
 python client_gui.py                                          #Ingresar datos por Interfaz grafica
 ```
 
+<div style="padding:10px;border-radius:8px;background:#f7f7f7;">
+      <strong>1️⃣5️⃣ Paso 15:</strong>
+      <p style="margin:.25rem 0 0 0;">Ya para finalizar capturaremos el trafico de estas solicitudes al servidor con Wireshark desde Zorin OS (osea el Servidor).</p>
+</div>
+
+<div style="padding:10px;border-radius:8px;background:#f7f7f7;">
+      <strong>1️⃣6️⃣ Paso 16:</strong>
+      <p style="margin:.25rem 0 0 0;">Recuerda que se debe estar capturando en Wireshark cuando hagas las solicitudes, una vez realizadas terminas la captura y filtras por "tcp.port == 9999" y te saldran todos los paquetes relacionados con esta practica.</p>
+</div>
+
 <p align="center">
   <a href="https://git.io/typing-svg">
     <img src="https://readme-typing-svg.herokuapp.com?font=Bitcount+Grid+Single&weight=500&duration=3000&pause=1000&color=F5FF29&background=000000&center=true&vCenter=true&width=400&lines=Redes;TCP;Servidor+Remoto;Wireshark" alt="Typing SVG" />
