@@ -156,6 +156,18 @@ python client_gui.py                                          #Ingresar datos po
       <p style="margin:.25rem 0 0 0;">Recuerda que se debe estar capturando en Wireshark cuando hagas las solicitudes, una vez realizadas terminas la captura y filtras por "tcp.port == 9999" y te saldran todos los paquetes relacionados con esta practica.</p>
 </div>
 
+<div style="padding:10px;border-radius:8px;background:#f7f7f7;">
+      <strong>Para finalizar</strong>
+      <p style="margin:.25rem 0 0 0;">👇👇 Se subio a este repositorio la guia paso a paso con capturas "TrabajoTCP_Practico.pdf" y tambien lo tiene en formato web aca abajo.</p>
+</div>
+
+<div style="text-align:center; margin-bottom:15px;">
+  <a href="https://jeisonalexis.github.io/documentoTecnicoCupido/index.html" target="_blank">
+    📄 Documento Paso Paso
+  </a>
+</div>
+
+
 <p align="center">
   <a href="https://git.io/typing-svg">
     <img src="https://readme-typing-svg.herokuapp.com?font=Bitcount+Grid+Single&weight=500&duration=3000&pause=1000&color=F5FF29&background=000000&center=true&vCenter=true&width=400&lines=Redes;TCP;Servidor+Remoto;Wireshark" alt="Typing SVG" />
