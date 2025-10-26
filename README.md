@@ -1,6 +1,6 @@
 <div align="center">
   <img 
-    src="https://raw.githubusercontent.com/JeisonAlexis/FiltradoEspacio/main/assets/filtroespacial.svg"
+    src="https://raw.githubusercontent.com/JeisonAlexis/CalculadoraRemota-PracticaRedes/main/assets/redesBanner.svg"
     alt="Banner animado"
     style="width: 50%; max-width: 350px; height: auto; border-radius: 10px;" />
 </div>
@@ -10,66 +10,90 @@
 
 <div style="padding:10px;border-radius:8px;margin-bottom:8px;background:#f7f7f7;">
       <strong>1️⃣ Paso 1:</strong>
-      <p style="margin:.25rem 0 0 0;">Crea una carpeta para la <strong>practica</strong>.</p>
-</div>
-
-<div style="padding:10px;border-radius:8px;margin-bottom:8px;background:#f7f7f7;">
-      <strong>2️⃣ Paso 2:</strong>
-      <p style="margin:.25rem 0 0 0;">Abre esa carpeta en <strong>VisualStudio</strong>.</p>
-</div>
-
-<div style="padding:10px;border-radius:8px;margin-bottom:8px;background:#f7f7f7;">
-      <strong>3️⃣ Paso 3:</strong>
-      <p style="margin:.25rem 0 0 0;">Abre una nueva terminal y crea un nuevo entorno <strong>Virtual</strong>.</p>
+      <p style="margin:.25rem 0 0 0;">Entre en modo <strong>super usuario</strong> o <strong>root</strong> en el sistema que va ser el <strong>servidor</strong>.</p>
 </div>
 
 ```bash
-python -m venv venv   
+sudo -i 
+```
+
+<div style="padding:10px;border-radius:8px;margin-bottom:8px;background:#f7f7f7;">
+      <strong>2️⃣ Paso 2:</strong>
+      <p style="margin:.25rem 0 0 0;">Realiza las <strong>actualizaciones de paquetes</strong> necesarias.</p>
+</div>
+
+```bash
+sudo apt update
+sudo apt upgrade -y
+```
+
+<div style="padding:10px;border-radius:8px;margin-bottom:8px;background:#f7f7f7;">
+      <strong>3️⃣ Paso 3:</strong>
+      <p style="margin:.25rem 0 0 0;">Instala Python 3.</p>
+</div>
+
+```bash
+sudo apt install -y python3 python3-venv python3-pip
 ```
 
 <div style="padding:10px;border-radius:8px;margin-bottom:8px;background:#f7f7f7;">
       <strong>4️⃣ Paso 4:</strong>
-      <p style="margin:.25rem 0 0 0;">No olvides activar el entorno <strong>Virtual</strong>.</p>
+      <p style="margin:.25rem 0 0 0;">Ahora clona este <strong>Repositorio</strong>.</p>
 </div>
 
 ```bash
-.\venv\Scripts\activate     
+git clone https://github.com/JeisonAlexis/CalculadoraRemota-PracticaRedes.git  
 ```
 
 <div style="padding:10px;border-radius:8px;margin-bottom:8px;background:#f7f7f7;">
       <strong>5️⃣ Paso 5:</strong>
-      <p style="margin:.25rem 0 0 0;">Instala las librerias necesarias para la <strong>practica</strong>.</p>
+      <p style="margin:.25rem 0 0 0;">Para el paso anterior te pedira instalar Git (si no lo tienes instalado).</p>
 </div>
 
 ```bash
-pip install opencv-python
-pip install numpy
-pip install matplotlib
-pip install numba
-pip install requests
-python -m pip install --upgrade pip
-python -m pip install opencv-python numpy matplotlib numba requests
+sudo apt install git
 ```
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>6️⃣ Paso 6:</strong>
-      <p style="margin:.25rem 0 0 0;">Descarga las imagenes de la ruta <strong>/images/imagenes.zip</strong> de este <strong>Repositorio</strong></p>
+      <p style="margin:.25rem 0 0 0;">Debes conocer la ip del sistemas que vas a ser el <strong>Servidor</strong></p>
 </div>
+
+```bash
+ip addr
+```
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>7️⃣ Paso 7:</strong>
-      <p style="margin:.25rem 0 0 0;">Descomprime el archivo .zip en la carpeta que creaste para la practica.</p>
+      <p style="margin:.25rem 0 0 0;">Ahora se debe abrir los puertos en este caso del <strong>Servidor</strong>.</p>
 </div>
+
+```bash
+sudo apt install -y ufw
+sudo ufw allow 22/tcp        
+sudo ufw allow 9999/tcp      
+sudo ufw enable
+sudo ufw status verbose
+```
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>8️⃣ Paso 8:</strong>
-      <p style="margin:.25rem 0 0 0;">Descarga el archivo <strong>Codigo.ipynb</strong> de este <strong>Repositorio</strong>.</p>
+      <p style="margin:.25rem 0 0 0;">Este paso es opcinal (pero recomendado) y es simplemete desactivar el <strong>firewall</strong>.</p>
 </div>
+
+```bash
+sudo ufw disable
+```
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>9️⃣ Paso 9:</strong>
-      <p style="margin:.25rem 0 0 0;">Abrir el archivo en VisualStudio y seleccione el kernel del entorno virtual creado en esta <strong>practica</strong>.</p>
+      <p style="margin:.25rem 0 0 0;">Ejecuta el servidor para que este escuchando las solicitudes.</p>
 </div>
+
+```bash
+python3 server.py --host 0.0.0.0 --port 9999
+# Salida esperada de este comado es: [+] Servidor escuchando en 0.0.0.0:9999. Ctrl+C para salir.
+```
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>🔟 Paso 10:</strong>
@@ -95,9 +119,10 @@ gcc filtros.c pgm_utils.c -o filtros -fopenmp
 
 <p align="center">
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.herokuapp.com?font=Bitcount+Grid+Single&weight=500&duration=3000&pause=1000&color=F5FF29&background=000000&center=true&vCenter=true&width=451&lines=Filtrado+en+espacio;Transformaciones+de+suavizado;Promedio+del+entorno+de+la+vecindad;Filtros+no+lineales;Filtrado+espacial+paso+alto" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.herokuapp.com?font=Bitcount+Grid+Single&weight=500&duration=3000&pause=1000&color=F5FF29&background=000000&center=true&vCenter=true&width=400&lines=Redes;TCP;Servidor+Remoto;Wireshark" alt="Typing SVG" />
   </a>
 </p>
+
 
 
 ## <picture><img src = "https://raw.githubusercontent.com/JeisonAlexis/FiltradoEspacio/main/assets/equipo.gif" width = 50px></picture> Presentado Por:
