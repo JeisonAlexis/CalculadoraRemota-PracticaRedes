@@ -10,7 +10,7 @@
 
 <div style="padding:10px;border-radius:8px;margin-bottom:8px;background:#f7f7f7;">
       <strong>1️⃣ Paso 1:</strong>
-      <p style="margin:.25rem 0 0 0;">Entre en modo <strong>super usuario</strong> o <strong>root</strong> en el sistema que va ser el <strong>servidor</strong>.</p>
+      <p style="margin:.25rem 0 0 0;">Entre en modo <strong>super usuario</strong> o <strong>root</strong> en el sistema que va ser el <strong>servidor</strong> en este caso Zorin Os en VM.</p>
 </div>
 
 ```bash
@@ -87,7 +87,7 @@ sudo ufw disable
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>9️⃣ Paso 9:</strong>
-      <p style="margin:.25rem 0 0 0;">Ejecuta el servidor para que este escuchando las solicitudes.</p>
+      <p style="margin:.25rem 0 0 0;">Ejecuta el servidor para que este escuchando las solicitudes (recuerda que la ruta para ejecutar este comando es dentro de la carpeta creada por el repo).</p>
 </div>
 
 ```bash
@@ -97,13 +97,23 @@ python3 server.py --host 0.0.0.0 --port 9999
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>🔟 Paso 10:</strong>
-      <p style="margin:.25rem 0 0 0;">Siga el flujo de ejecucion del Jupyter pero ten en cuenta que en la variable "carpeta" debe estar tu ruta de la carpeta de imagenes <strong>Ej: carpeta = r"C:\Users\jeyco\Documents\GitHub\FiltradoEspacio\images\imagenes"</strong>.</p>
+      <p style="margin:.25rem 0 0 0;">Ahora debemos configurar los clientes, para esta practica los clientes van a ser Ubunto en VM y Windows como sistema operativo nativo. Clona de nuevo el Repositorio</p>
 </div>
+
+```bash
+git clone https://github.com/JeisonAlexis/CalculadoraRemota-PracticaRedes.git  
+```
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>1️⃣1️⃣ Paso 11:</strong>
-      <p style="margin:.25rem 0 0 0;">Descargar los archivos de la ruta <strong>/codigos/</strong> de este <strong>Repositorio</strong> y muevelos a la carpeta de esta <strong>practica</strong>.</p>
+      <p style="margin:.25rem 0 0 0;">Mandar datos al servidor desde el Cliente Ubuntu (para ejecutar este comando ten en cuenta que la ruta debe ser dentro de la carpeta del repo)</p>
 </div>
+
+
+```bash
+python3 client.py --server <ip-del-servidor> --port 9999
+# Ejemplo de comando python3 client.py --server 192.168.101.83 --port 9999
+```
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>1️⃣2️⃣ Paso 12:</strong>
