@@ -87,7 +87,7 @@ sudo ufw disable
 
 <div style="padding:10px;border-radius:8px;background:#f7f7f7;">
       <strong>9️⃣ Paso 9:</strong>
-      <p style="margin:.25rem 0 0 0;">Ejecuta el servidor para que este escuchando las solicitudes (recuerda que la ruta para ejecutar este comando es dentro de la carpeta creada por el repo).</p>
+      <p style="margin:.25rem 0 0 0;">Ejecuta el servidor para que esté escuchando las solicitudes (recuerda que la ruta para ejecutar este comando es dentro de la carpeta creada por el repo).</p>
 </div>
 
 ```bash
