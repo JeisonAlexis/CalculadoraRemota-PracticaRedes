@@ -163,7 +163,7 @@ python client_gui.py                                          #Ingresar datos po
 </div>
 
 <div style="text-align:center; margin-bottom:15px;">
-  <a href="https://jeisonalexis.github.io/documentoTecnicoCupido/index.html" target="_blank">
+  <a href="https://jeisonalexis.github.io/documentosPages/index.html" target="_blank">
     📄 Documento Paso Paso
   </a>
 </div>
